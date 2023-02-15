@@ -1,0 +1,22 @@
+[
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "frog :D"
+  },
+  {
+    "kind": 2,
+    "language": "javascript",
+    "value": "background (227, 249, 255);\r\nfunction characterFrog() {\r\n    push();\r\n    noStroke();\r\n    fill(184, 247, 82);\r\nellipse(94, 300, 55);\r\nellipse(78, 278, 20);\r\nellipse(105, 276, 20);\r\npop();\r\npush();\r\nnoStroke();\r\nfill(0, 0, 0);\r\nellipse(77, 275, 8);\r\nellipse(106, 273, 8);\r\npop();\r\npush();\r\nnoStroke();\r\nfill(210, 250, 145);\r\nellipse(95, 307, 40);\r\npop();\r\npush();\r\nnoFill();\r\nbeginShape();\r\nvertex(87, 283);\r\nbezierVertex(91, 287, 105, 283, 102, 282);\r\nendShape();\r\npop();\r\npush();\r\nfill(184, 247, 82);\r\nnoStroke();\r\nellipse(101, 323, 15);\r\nellipse(89, 323, 15);\r\npop();\r\n}\r\npush();\r\ntranslate(-100, -300);\r\nscale(2.0);\r\ncharacterFrog ();\r\npop();\r\n"
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "flowers"
+  },
+  {
+    "kind": 2,
+    "language": "javascript",
+    "value": "background(255, 255, 255);\r\nlet y=100;\r\nlet x=200;\r\nfunction flowerBlue() {\r\n    push();\r\n    noStroke();\r\n    fill(179, 211, 259);\r\n    ellipse(x-47, y, y-80);\r\n    ellipse(x-35, y+7, y-80);\r\n    ellipse(x-38, y+24, y-80);\r\n    ellipse(x-54, y+24, y-80);\r\n    ellipse(x-59, y+7, y-80);\r\n    pop();\r\n    push();\r\n    noStroke();\r\n    fill(252, 252, 121);\r\n    ellipse(x-47, y+13, y-84);\r\n    pop();\r\n    push();\r\n    fill(16, 161, 45);\r\n    strokeWeight(2);\r\n    line(x-46, y+30, x-47, x-36);\r\n    pop();\r\n\r\n}\r\nflowerBlue();"
+  }
+]
