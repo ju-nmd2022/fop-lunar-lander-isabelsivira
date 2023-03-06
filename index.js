@@ -1,4 +1,3 @@
-mode = 0;
 function setUp() {
   createCanvas(630, 580);
   background(197, 229, 232);
@@ -111,87 +110,97 @@ function setUp() {
   flowerPurple(680, 475, 3.0);
 }
 //game screen
+
+function characterFrog(x, y) {
+  push();
+  translate(x, y);
+
+  push();
+  noStroke();
+  fill(184, 247, 82);
+  ellipse(x + 100, y + 50, 60);
+  ellipse(x + 80, y + 20, 20);
+  ellipse(x + 120, y + 20, 20);
+  pop();
+
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  ellipse(x + 80, y + 20, 10);
+  ellipse(x + 120, y + 20, 10);
+  pop();
+
+  push();
+  noStroke();
+  fill(210, 250, 145);
+  ellipse(x + 100, y + 55, 50);
+  pop();
+
+  push();
+  noFill();
+  beginShape();
+  vertex(x + 90, y + 34);
+  bezierVertex(x + 98, y + 45, x + 100, y + 45, x + 110, y + 34);
+  endShape();
+  pop();
+
+  push();
+  fill(184, 247, 82);
+  noStroke();
+  ellipse(x + 80, y + 50, 18);
+  ellipse(x + 120, y + 50, 18);
+  ellipse(x + 90, y + 75, 18);
+  ellipse(x + 110, y + 75, 18);
+  pop();
+  pop();
+}
+
+let characterFrogY = 100;
+let velocity = 2;
+let acceleration = 0.3;
+var mode;
+const speed = 2;
+let isGameActive = false;
 let x = 200;
 let y = 200;
-var mode;
-const speed = 3;
 
 function draw() {
   clear();
   setUp();
-
-  function characterFrog(x, y) {
-    push();
-    translate(x, y);
-
-    push();
-    noStroke();
-    fill(184, 247, 82);
-    ellipse(x + 100, y + 50, 60);
-    ellipse(x + 80, y + 20, 20);
-    ellipse(x + 120, y + 20, 20);
-    pop();
-
-    push();
-    noStroke();
-    fill(0, 0, 0);
-    ellipse(x + 80, y + 20, 10);
-    ellipse(x + 120, y + 20, 10);
-    pop();
-
-    push();
-    noStroke();
-    fill(210, 250, 145);
-    ellipse(x + 100, y + 55, 50);
-    pop();
-
-    push();
-    noFill();
-    beginShape();
-    vertex(x + 90, y + 34);
-    bezierVertex(x + 98, y + 45, x + 100, y + 45, x + 110, y + 34);
-    endShape();
-    pop();
-
-    push();
-    fill(184, 247, 82);
-    noStroke();
-    ellipse(x + 80, y + 50, 18);
-    ellipse(x + 120, y + 50, 18);
-    ellipse(x + 90, y + 75, 18);
-    ellipse(x + 110, y + 75, 18);
-    pop();
-    pop();
-  }
-  if (mode == 0) {
+  if (isGameActive == false) {
     textSize(30);
     text("Press enter to start", 190, 260);
   }
-  if (mode == 1) {
-    characterFrog(100, 100);
-
-    if (keyIsDown(65)) {
+  if (isGameActive) {
+    characterFrogY = characterFrogY + velocity;
+    velocity = velocity + acceleration;
+    if (keyIsDown(37)) {
       x = x - speed;
-    } else if (keyIsDown(68)) {
+    } else if (keyIsDown(39)) {
       x = x + speed;
     }
-    if (keyIsDown(87)) {
+    if (keyIsDown(38)) {
       y = y - speed;
-    } else if (keyIsDown(83)) {
+    } else if (keyIsDown(40)) {
       y = y + speed;
     }
+    if (mouseIsPressed) {
+      velocity = velocity - 1;
+    }
 
-    setUp();
-    characterFrog(x, y);
+    if (characterFrogY > 400) {
+      mode = 0;
+    }
+    characterFrog(100, characterFrogY);
   }
+}
+if (characterFrog(velocity < 3)) {
+  loseScreen();
 }
 
 function keyPressed() {
   if (keyCode === 13) {
-    mode = 1;
-  }
-  if (characterFrog(65, 520)) {
-    winScreen();
+    isGameActive = true;
   }
 }
 
