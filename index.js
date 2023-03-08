@@ -1,3 +1,7 @@
+function setup() {
+  frameRate(30);
+}
+
 function scenery() {
   createCanvas(630, 580);
   background(197, 229, 232);
@@ -33,10 +37,8 @@ function scenery() {
   fill(255, 241, 71);
   ellipse(560, 84, 170);
   pop();
-
-  //blue flower
 }
-//game screen
+//frog
 
 function characterFrog(x, y) {
   push();
@@ -82,6 +84,7 @@ function characterFrog(x, y) {
   pop();
 }
 
+//flowers
 function flowerBlue(x, y, s) {
   //petals
 
@@ -152,15 +155,19 @@ function flowerPurple(x, y, s) {
   pop();
 }
 
+//variables
+
 let characterFrogY = 100;
-let velocity = 2;
-let acceleration = 0.5;
+let velocity = 0.1;
+let acceleration = 0.2;
 let mode = 0;
 const speed = 2;
 let isGameActive = false;
 var move = 5;
-let x = 200;
+let x = 100;
 let y = 200;
+
+//actual game
 
 function draw() {
   clear();
@@ -170,13 +177,17 @@ function draw() {
   flowerPurple(680, 475, 3.0);
 
   if (mode === 0) {
+    //game is not active
     textSize(30);
     text("Press enter to start", 190, 260);
   }
+
   if (mode === 1) {
+    //game is active
     characterFrogY = characterFrogY + velocity;
     velocity = velocity + acceleration;
 
+    //move sideways
     if (keyIsDown(65)) {
       x = x - speed;
     } else if (keyIsDown(68)) {
@@ -184,26 +195,28 @@ function draw() {
     }
 
     characterFrog(x, characterFrogY);
-
-    if (velocity > 13) {
-      mode = 2;
-      loseScreen();
-    }
-    if (characterFrogY > 480 && velocity < 10) {
-      winScreen();
-    }
-    if (keyIsDown(83)) {
-      velocity = velocity - 1;
-    }
-    if (characterFrogY < -3) {
-      characterFrogY = characterFrogY + move;
-    }
-    if (characterFrogY < -3) {
-      characterFrogY = characterFrogY - move;
-    }
+  }
+  // lines 200 to 217 were coded with the help of Tamzin Clegg
+  if (characterFrogY > 230 && velocity > 2) {
+    //losing screen
+    mode = 2;
+    loseScreen();
+  }
+  if (characterFrogY > 230 && velocity < 2) {
+    //winning screen
+    mode = 2;
+    winScreen();
+  }
+  if (keyIsDown(83)) {
+    //move the frog upwards
+    velocity = velocity - 0.5;
+  }
+  if (characterFrogY < -3) {
+    //boundary on the top of the screen
+    characterFrogY = characterFrogY + move;
   }
 }
-// the lines 198 to 214 were coded inspired by https://www.youtube.com/watch?v=z-4TeZpF8Aw&t=496s&ab_channel=CloudyHeavenGames
+// the lines 217 to 225 were coded inspired by https://www.youtube.com/watch?v=z-4TeZpF8Aw&t=496s&ab_channel=CloudyHeavenGames
 function resetGame() {
   // restart variables
   characterFrogY = 100;
@@ -215,13 +228,16 @@ function resetGame() {
   mode = 0;
 }
 
+// start the game
 function keyPressed() {
   if (keyCode === 13) {
     if (mode === 0) {
       mode = 1;
     }
   }
-  if (keyCode === 32) {
+
+  //restart the game
+  if (keyCode === 32 && mode === 2) {
     resetGame();
   }
 }
@@ -231,9 +247,9 @@ function keyPressed() {
 function loseScreen() {
   scenery();
   textSize(30);
-  text("Oops, you're going too fast!!", 180, 265);
+  text("Oh no! Mr. frog fell too hard :(", 130, 265);
   textSize(20);
-  text("Press space to try again", 267, 300);
+  text("Press space to try again", 217, 300);
 }
 
 //WIN SCREEN
