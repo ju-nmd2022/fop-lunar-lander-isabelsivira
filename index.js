@@ -3,14 +3,14 @@ function setup() {
 }
 
 function scenery() {
-  createCanvas(630, 580);
+  createCanvas(900, 700);
   background(197, 229, 232);
 
   //floor
   push();
   noStroke();
   fill(118, 184, 118);
-  rect(0, 480, width, 200);
+  rect(0, 480, 900, 250);
   pop();
 
   //clouds
@@ -23,19 +23,22 @@ function scenery() {
   ellipse(263, 162, 75);
   ellipse(310, 162, 75);
   ellipse(360, 162, 75);
+  ellipse(456, 62, 100);
+  ellipse(508, 62, 100);
+  ellipse(570, 62, 100);
   pop();
 
   //mr sun
   push();
   noStroke();
   fill(250, 152, 60);
-  ellipse(560, 84, 250);
+  ellipse(840, 84, 250);
   pop();
 
   push();
   noStroke();
   fill(255, 241, 71);
-  ellipse(560, 84, 170);
+  ellipse(840, 84, 170);
   pop();
 }
 //frog
@@ -155,6 +158,28 @@ function flowerPurple(x, y, s) {
   pop();
 }
 
+function flowerOrange(x, y, s) {
+  //petals
+
+  push();
+  noStroke();
+  fill(250, 172, 127);
+  ellipse(x - 47 * s, y, 20 * s);
+  ellipse(x - 35 * s, y + 7 * s, 20 * s);
+  ellipse(x - 38 * s, y + 24 * s, 20 * s);
+  ellipse(x - 54 * s, y + 24 * s, 20 * s);
+  ellipse(x - 59 * s, y + 7 * s, 20 * s);
+  pop();
+
+  //center
+
+  push();
+  noStroke();
+  fill(252, 252, 121);
+  ellipse(x - 47 * s, y + 13 * s, 16 * s);
+  pop();
+}
+
 //variables
 
 let characterFrogY = 100;
@@ -172,14 +197,26 @@ let y = 200;
 function draw() {
   clear();
   scenery();
-  flowerBlue(210, 475, 3.0);
-  flowerPink(450, 475, 3.0);
-  flowerPurple(680, 475, 3.0);
+  flowerBlue(230, 520, 3.0);
+  flowerPink(450, 520, 3.0);
+  flowerPurple(680, 520, 3.0);
+  flowerBlue(900, 520, 3.0);
+  flowerPink(690, 620, 0.7);
+  flowerPurple(708, 553, 0.7);
+  flowerOrange(510, 656, 0.7);
+  flowerBlue(600, 650, 0.7);
+  flowerOrange(655, 500, 0.7);
+  flowerPurple(141, 656, 0.7);
+  flowerOrange(230, 623, 0.7);
+  flowerBlue(320, 656, 0.7);
+  flowerPink(410, 623, 0.7);
+  flowerPurple(770, 662, 0.7);
+  flowerOrange(858, 638, 0.7);
 
   if (mode === 0) {
     //game is not active
     textSize(30);
-    text("Press enter to start", 190, 260);
+    text("Press enter to start", 320, 260);
   }
 
   if (mode === 1) {
@@ -196,7 +233,7 @@ function draw() {
 
     characterFrog(x, characterFrogY);
   }
-  // lines 200 to 217 were coded with the help of Tamzin Clegg
+  // thext 6 lines were coded with the help of Tamzin Clegg
   if (characterFrogY > 230 && velocity > 2) {
     //losing screen
     mode = 2;
@@ -216,7 +253,7 @@ function draw() {
     characterFrogY = characterFrogY + move;
   }
 }
-// the lines 217 to 225 were coded inspired by https://www.youtube.com/watch?v=z-4TeZpF8Aw&t=496s&ab_channel=CloudyHeavenGames
+// the next 8 lines of code were inspired by https://www.youtube.com/watch?v=z-4TeZpF8Aw&t=496s&ab_channel=CloudyHeavenGames
 function resetGame() {
   // restart variables
   characterFrogY = 100;
@@ -247,9 +284,9 @@ function keyPressed() {
 function loseScreen() {
   scenery();
   textSize(30);
-  text("Oh no! Mr. frog fell too hard :(", 130, 265);
+  text("Oh no! Mr. frog fell too hard :(", 320, 265);
   textSize(20);
-  text("Press space to try again", 217, 300);
+  text("Press space to try again", 390, 300);
 }
 
 //WIN SCREEN
@@ -257,8 +294,7 @@ function loseScreen() {
 function winScreen() {
   scenery();
   textSize(30);
-  text("You won!! :D", 220, 265);
+  text("You won!! :D", 330, 265);
   stroke(0, 0, 0);
   noFill();
-  rect(160, 205, 290, 100);
 }
